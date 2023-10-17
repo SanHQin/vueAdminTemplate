@@ -36,7 +36,15 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    //代理
+    proxy: {
+      //如果以api打头，都会被代理拦截
+      "/api": {
+        target:"http://127.0.0.1:3000",//目标服务器
+        changeOrigin: true,
+      }
+    }
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
